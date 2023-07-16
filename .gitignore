@@ -57,3 +57,6 @@ coverage.xml
 # Backup files
 *~
 *.swp
+
+# Don't commit 3rdparty libraries
+3rdparty-addons/*
