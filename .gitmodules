@@ -1,0 +1,4 @@
+[submodule "3rdparty-addons/web"]
+	path = 3rdparty-addons/web
+	url = https://github.com/OCA/web.git
+	branch = 16.0

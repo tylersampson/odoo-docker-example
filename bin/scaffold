@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+
+module_name=$@
+human_name=$(echo "$module_name" | sed -E 's/_/ /g; s/(^| )([a-z])/\1\U\2/g')
+DIR="addons/$module_name"
+
+mkdir $DIR && cd $DIR
+
+mkdir models
+touch models/__init__.py
+
+mkdir controllers
+touch controllers/__init__.py
+
+cat << EOF > __manifest__.py
+{
+    "name": "$human_name",
+    "summary": "",
+    "version": "1.0.0",
+    "author": "$author",
+    "website": "https://github.com/$author",        
+    "category": "Productivity",
+    "depends": ["base"],
+}
+EOF
+
+cat << EOF > __init__.py
+from . import models
+from . import controllers
+EOF
+
+echo "Created module $human_name in $DIR"
